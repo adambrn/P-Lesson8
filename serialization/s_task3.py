@@ -11,9 +11,10 @@ def save_as_csv(json_file, csv_file):
         writer = csv.writer(file)
         writer.writerow(['ID', 'Name', 'Access Level'])
 
-        for identifier, user_data in data.items():
-            row = [identifier, user_data['name'], user_data['access_level']]
-            writer.writerow(row)
+        for access_level, user_data in data.items():
+            for identifier, user in user_data.items():
+                row = [identifier, user, access_level]
+                writer.writerow(row)
 
     print("Файл успешно сохранен в формате CSV.")
 
